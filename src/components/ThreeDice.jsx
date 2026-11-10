@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-export default function ThreeDice({ targetValue = 1, isRolling = false, onRollComplete, size = 180 }) {
+export default function ThreeDice({ targetValue = 1, isRolling = false, onRollComplete, size = 160 }) {
   const mountRef = useRef(null);
   const diceRef = useRef(null);
   const animFrameId = useRef(null);
@@ -80,7 +80,7 @@ export default function ThreeDice({ targetValue = 1, isRolling = false, onRollCo
     if (!diceRef.current) return;
     const d = diceRef.current;
     if (isRolling) {
-      let speed = 0.4;
+      let speed = 0.45;
       let time = 0;
       const timer = setInterval(() => {
         d.rotation.x += speed;

@@ -1,46 +1,62 @@
 import React, { useState } from 'react';
+import GameArena from './pages/GameArena';
 import SuperAdminPanel from './pages/SuperAdminPanel';
-import HostScreen from './pages/HostScreen';
 import StudentScreen from './pages/StudentScreen';
-import { ShieldCheck, Smartphone } from 'lucide-react';
+import { Gamepad2, ShieldCheck, Smartphone } from 'lucide-react';
 
 export default function App() {
-  const [view, setView] = useState('HOME');
-  const [activeRoomId, setActiveRoomId] = useState('');
+  // DEFAULT LANGSUNG TAMPILKAN PAPAN PERMAINAN!
+  const [tab, setTab] = useState('GAME');
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-sans">
-      <nav className="p-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-        <span className="font-black text-amber-400 tracking-wider">FANTASY EDU LADDERS</span>
-        <div className="flex space-x-2">
-          <button onClick={() => setView('SUPER_ADMIN')} className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded-lg font-bold flex items-center space-x-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>Admin Lisensi</span>
-          </button>
-          <button onClick={() => setView('STUDENT')} className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded-lg font-bold flex items-center space-x-1">
-            <Smartphone className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Layar Siswa</span>
-          </button>
+    <div className="min-h-screen bg-slate-950 text-white font-sans flex flex-col">
+      {/* HEADER NAVIGASI JELAS */}
+      <header className="p-4 bg-slate-900/90 backdrop-blur border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 sticky top-0 z-50">
+        <div className="flex items-center space-x-2">
+          <span className="text-xl font-black text-amber-400 tracking-wider">FANTASY EDU LADDERS</span>
+          <span className="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">3D LIVE</span>
         </div>
-      </nav>
 
-      {view === 'SUPER_ADMIN' && <SuperAdminPanel />}
-      {view === 'STUDENT' && <StudentScreen />}
-      {view === 'HOST' && <HostScreen roomId={activeRoomId} />}
-      {view === 'HOME' && (
-        <div className="flex flex-col items-center justify-center p-8 min-h-[80vh] text-center space-y-6">
-          <h1 className="text-4xl md:text-6xl font-black text-amber-400">Petualangan Ular Tangga Edukasi</h1>
-          <p className="text-slate-400 max-w-lg text-sm">Game kuis 3D interaktif multiplayer diakses langsung lewat web browser.</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button onClick={() => setView('SUPER_ADMIN')} className="px-6 py-3.5 bg-amber-400 text-slate-950 font-black rounded-2xl shadow-lg">
-              Buka Panel Lisensi (Super Admin)
-            </button>
-            <button onClick={() => setView('STUDENT')} className="px-6 py-3.5 bg-cyan-500 text-slate-950 font-black rounded-2xl shadow-lg">
-              Masuk Arena Siswa
-            </button>
-          </div>
+        {/* 3 MENU UTAMA */}
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => setTab('GAME')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center space-x-1.5 transition-all
+              ${tab === 'GAME' ? 'bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}
+            `}
+          >
+            <Gamepad2 className="w-4 h-4" />
+            <span>🎮 Arena Papan 100 Kotak</span>
+          </button>
+
+          <button
+            onClick={() => setTab('STUDENT')}
+            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 transition-all
+              ${tab === 'STUDENT' ? 'bg-cyan-500 text-slate-950 shadow-lg' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}
+            `}
+          >
+            <Smartphone className="w-4 h-4" />
+            <span>📱 Layar HP Siswa</span>
+          </button>
+
+          <button
+            onClick={() => setTab('ADMIN')}
+            className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 transition-all
+              ${tab === 'ADMIN' ? 'bg-purple-600 text-white shadow-lg' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}
+            `}
+          >
+            <ShieldCheck className="w-4 h-4 text-amber-400" />
+            <span>🔑 Admin Lisensi</span>
+          </button>
         </div>
-      )}
+      </header>
+
+      {/* ISI KONTEN UTAMA */}
+      <main className="flex-1 p-4 md:p-6 flex items-center justify-center">
+        {tab === 'GAME' && <GameArena />}
+        {tab === 'STUDENT' && <StudentScreen />}
+        {tab === 'ADMIN' && <SuperAdminPanel />}
+      </main>
     </div>
   );
 }

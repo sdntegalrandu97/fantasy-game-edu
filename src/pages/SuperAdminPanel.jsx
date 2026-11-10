@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { ShieldCheck, UserPlus } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export default function SuperAdminPanel() {
   const [licenses, setLicenses] = useState([]);
@@ -30,7 +30,7 @@ export default function SuperAdminPanel() {
     <div className="p-6 max-w-4xl mx-auto space-y-6">
       <h1 className="text-2xl font-black text-amber-400 flex items-center space-x-2">
         <ShieldCheck className="w-7 h-7" />
-        <span>Panel Lisensi Pembeli (Super Admin)</span>
+        <span>Pusat Lisensi Pembeli (Super Admin)</span>
       </h1>
       <form onSubmit={handleCreate} className="grid grid-cols-1 md:grid-cols-3 gap-3 bg-slate-900 p-4 rounded-2xl">
         <input placeholder="Nama Pembeli / Sekolah" required value={buyerName} onChange={e=>setBuyerName(e.target.value)} className="bg-slate-800 p-2.5 rounded-xl text-sm" />

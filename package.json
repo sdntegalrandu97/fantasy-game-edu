@@ -1,7 +1,7 @@
 {
   "name": "fantasy-edu-ladders",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,12 +13,10 @@
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.453.0",
-    "qrcode.react": "^4.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.4",
-    "three": "^0.169.0",
-    "xlsx": "^0.18.5"
+    "three": "^0.169.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",
